@@ -1,0 +1,50 @@
+###VIDEO31_HERENCIA_SUPER####
+
+#¿qué es la función super?
+
+#creo dos clases: personas y empleados
+
+class persona():
+	def __init__(self,nombre,edad,lugar_residencia):
+
+		self.nombre=nombre 
+
+		self.edad=edad
+
+		self.lugar_residencia=lugar_residencia
+
+	def descripcion(self):
+
+		print("nombre:", self.nombre, "edad:", self.edad, "residencia:", self.lugar_residencia)
+
+class empleado(persona):
+	
+	def __init__(self,salario,antigüedad,nombre_empleado,edad_empleado,residencia_empleado):
+
+		super().__init__(nombre_empleado,edad_empleado,residencia_empleado)#está llamando al método de la clase padre #__init__ de la clase persona y entonces le paso nombre,edad y lugar_residencia.
+
+		self.salario=salario
+
+		self.antigüedad=antigüedad
+
+		def descripcion(self):
+
+			super().descripcion()
+
+			print("salario:", self.salario, "antigüedad:", self.antigüedad)
+
+instancia1=empleado(1500,15,"manuel",55,"colombia")
+
+instancia1.descripcion()
+
+#función isinstance...
+
+print(isinstance(instancia1,empleado))# ¿es instancia1 un empleado?.... y persona?
+
+print(isinstance(instamcia1,persona))
+
+instancia2=persona("juan",55,"colombia")
+
+print(isintance(instancia2,persona)) #dara TRUE
+
+print(isintance(instancia2,empleado)) #dara FALSE...no todas las personas son empleado.. en #este caso juan no lo es
