@@ -1,0 +1,29 @@
+#PUNTERO
+#el puntero es el "cursor" o dónde estamos apuntando. Por defecto empieza en la posición 1 y cuando terminamos de leer un archivo, se va al final.
+#Podemos cambiar la posición del PUNTERO por defecto.
+#esto se hace con el método SEEK. Pide un parámetro
+
+
+from io import open
+#por ahora solo necesitamos open
+archivo_texto=open("archivo.txt","r")
+archivo_texto.seek(len(archivo_texto.read())/2)#posicione el puntero en la MITAD del texto
+print(archivo_texto.read())
+archivo_texto.seek(0)
+print(archivo_texto.read())
+archivo_texto.seek(11)#cuando hayas terminado el print anterior vete a la posición11
+print(archivo_texto.read())
+
+
+
+####otro caso###
+
+from io import open
+#por ahora solo necesitamos open
+archivo_texto=open("archivo.txt","r+")#r+=lectura y escritura
+listatext=archivo_texto.readlines()#python devuelve una lista con sus salto de líneas \n
+print(listatext)
+listatext[1]="Incluida a mano \n "
+archivo_texto.seek(0)
+archivo_texto.writelines(listatext)#writelines siempre pide una lista como parámetro
+archivo_texto.close()
