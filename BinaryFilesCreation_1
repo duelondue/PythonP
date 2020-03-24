@@ -1,0 +1,24 @@
+import pickle #ya viene con los métodos necesarios para serializar
+
+lista_nombre=["Pedro","Ana", "María", "Isabel"]
+
+#Creo fichero externo con acceso de escritura BINARIA.
+
+fichero_binario=open("lista_nombre","wb")#así lo creo y le doy nombre, escriturabinaria=wb
+
+#hago el volcado
+
+pickle.dump(lista_nombre,fichero_binario) #dump necesita 2 argumentos
+#(la información a volcar, el nombre del fichero al que lo queremos volcar)
+#fichero_binario=fichero en memoria
+ficher_binario.close()
+del (fichero_binario)#lo borramos
+#Corremos y vemos como se ha creado un archivo de texto.
+
+fichero=open("lista_nombre","rb")#rb=readbinary
+
+#guardo la info en una lista
+
+lista=pickle.load(fichero)#la info está guardada en fichero
+
+print(lista)
