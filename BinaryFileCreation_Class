@@ -1,0 +1,62 @@
+import pickle
+
+class vehiculos():
+    def __init__(self,marca,modelo):
+        #me sirve para definir qué constructor
+
+        self.marca=marca
+        self.modelo=modelo
+        self.enmarcha=False #por defecto, todos estarán parados
+        self.acelera=False #cuando cree un objeto NO estará acelerando
+        self.frena=False
+
+
+#voy a definir los comportamientos que van a tener los vehículos
+#van a poder ARRANCAR
+    def arancar(self):
+        self.enmarcha=True
+
+#van a poder ACELERAR
+    def acelerar(self):
+        self.acelera=True
+
+
+#van a poder FRENAR
+    def frenar(self):
+        self.frena=True
+
+#Algo que me defina el ESTADO de mi vehículo
+
+    def estado(self):
+        print("Marca: ", self.marca, "\nModelo; ", self.modelo, "\nEn Marcha: ", self.enmarcha, "\nAcelerando:", self.acelera, "\nFrenando: ", self.frena) #\n me hace un salto de línea
+
+coche1=vehiculos("Mazda", "MX5")
+coche2=vehiculos("Seat", "León")
+coche3=vehiculos("Renault", "Megane")
+
+coches=[coche1,coche2,coche3]#colección de objetos
+
+fichero=open("loscoches","wb")
+
+pickle.dump(coches, fichero)
+
+#en FICHERO tengo guardada la info serializada
+
+fichero.close()
+del(fichero)
+
+ficheroApertura=open("loscoches","rb")
+
+#cargo la info en esta variable MisCoches
+
+miscoches=pickle.load(ficheroApertura)#en esta variable tenog la info q necesita
+
+ficheroApertura.close()
+
+for c in miscoches: #puedo imprimir los objetos en Bruto
+    print(c)
+#<__main__.vehiculos object at 0x10bc743d0>
+#<__main__.vehiculos object at 0x10bc87c10>
+#<__main__.vehiculos object at 0x10bc87f10>
+    print(c.estado())
+        
